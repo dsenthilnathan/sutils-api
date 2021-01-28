@@ -2,7 +2,7 @@
 Utility API's for the common functionalities
 
 # API's available
-   1.) An API which calculates and returns all the prime numbers up to and including a number provided
+   1.) /primes/{n} - An API which calculates and returns all the prime numbers up to and including a number provided
 
 Features
    1. Supports both XML & JSON response (based on the Accept header)
