@@ -25,9 +25,9 @@ https://sutils-api.azurewebsites.net
 
 # Future Scope
 
-1.) Support for Swagger Documentation
-2.) Having OAUTH to authorize/authenticate the callers
-3.) Having DB support for auditing 
+1. Support for Swagger Documentation
+2. Having OAUTH to authorize/authenticate the callers
+3. Having DB support for auditing 
 
 
 # About the Author
