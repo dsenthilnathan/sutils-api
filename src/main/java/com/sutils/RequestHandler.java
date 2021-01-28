@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.core.env.Environment;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +40,15 @@ public class RequestHandler {
 	
 	SUtilService sutil;
 	
+//    @Autowired
+//	
+//	private Environment env;
+//    
+//	private int lowerBoundary = Integer.parseInt(env.getProperty("primes.min.input"));
+//	
+//	private int upperBoundary = Integer.parseInt(env.getProperty("primes.max.input"));
+	
+	
 	
 	private final Logger logger = LoggerFactory.getLogger(RequestHandler.class);
 	
@@ -46,7 +56,7 @@ public class RequestHandler {
 	
 	@RequestMapping( value = "/primes/{n}", method=RequestMethod.GET , produces= {"application/json", "application/xml"})
 	
-	Primes getPrimes(@PathVariable(required = true) @Min(1) @Max(100)  int n) {
+	Primes getPrimes(@PathVariable(required=true , name = "n")  int n) {
 		 
 		logger.info("getPrimes - Entry");
 		

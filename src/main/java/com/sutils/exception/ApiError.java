@@ -47,6 +47,13 @@ public class ApiError {
 	       this.message = message;
 	       this.debugMessage = ex.getLocalizedMessage();
 	   }
+	   
+	   ApiError(HttpStatus status, String message, String debugMessage) {
+	       this();
+	       this.status = status;
+	       this.message = message;
+	       this.debugMessage =debugMessage;
+	   }
 
 	public HttpStatus getStatus() {
 		return status;

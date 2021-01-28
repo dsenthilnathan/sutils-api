@@ -84,7 +84,7 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler{
 		 
 		 String error = "Invalid Input";
 			
-			return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST,error,ex));
+			return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST,error,"java.lang.NumberFormatException - Only whole numbers are allowed as input"));
 		 
 	 }
 	

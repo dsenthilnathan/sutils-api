@@ -14,9 +14,13 @@ import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import com.sutils.exception.InvalidInputException;
 import com.sutils.vo.Primes;
 
 @Service
@@ -24,6 +28,10 @@ import com.sutils.vo.Primes;
 public class SUtilService implements SUtilServiceInterface{
 	
 	private final Logger logger = LoggerFactory.getLogger(SUtilService.class);
+	
+	@Autowired
+	
+	private Environment env;
 
 	@Override
 	public String getWelcomeMessage() {
@@ -41,14 +49,18 @@ public class SUtilService implements SUtilServiceInterface{
 		
 		logger.info("getPrimes - Entry");
 		
+		int lowerBoundary = Integer.parseInt(env.getProperty("primes.min.input"));
+		
+		int upperBoundary = Integer.parseInt(env.getProperty("primes.max.input"));
+		
 		List<Integer> result = new ArrayList();
 		
 		if(n==2) {
 			result.add(n);
 			
 			return constructPrimes(n, result);
-		}else if(n<2) {
-			return constructPrimes(n, result);
+		}else if(n<lowerBoundary || n>upperBoundary) {
+			throw new InvalidInputException("Invalid Input : Input is not within the range of "+lowerBoundary+" - "+upperBoundary);
 		}
 		
 		IntStream.range(2, n)
